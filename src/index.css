@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Host Grotesk";
+  src: url("/public/hostGrotesk-400_800.ttf") format("truetype");
+  font-weight: 400 800;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/public/GeneralSans-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+}
