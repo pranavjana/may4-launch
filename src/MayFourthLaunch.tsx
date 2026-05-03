@@ -277,7 +277,7 @@ const ToolBlock: React.FC<{
           {name}
         </span>
         <span style={{ color: colors.muted }}>(</span>
-        <span style={{ color: accent }}>{command.replace(`${name}(`, "").replace(/\)$/, "")}</span>
+        <span style={{ color: colors.text }}>{command.replace(`${name}(`, "").replace(/\)$/, "")}</span>
         <span style={{ color: colors.muted }}>)</span>
       </div>
       <div style={{ marginTop: 6, color: colors.muted }}>
