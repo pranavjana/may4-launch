@@ -1090,7 +1090,7 @@ const MontageScene = () => {
             whiteSpace: "nowrap",
           }}
         >
-          Use it anywhere. <span style={{ color: colors.orange }}>Any time.</span>
+          Use them anywhere. <span style={{ color: colors.orange }}>Any time.</span>
         </div>
         <div
           style={{
