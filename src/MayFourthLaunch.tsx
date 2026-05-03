@@ -751,7 +751,7 @@ const TelegramScene = () => {
               show={frame > 10}
             />
             {frame > 34 ? (
-              <OpenClawActivityBubble frame={frame - 34} />
+              <OpenClawToolTextBubble frame={frame - 34} />
             ) : null}
             {frame > 82 ? (
               <Bubble
@@ -866,13 +866,33 @@ const PhoneStatus = () => (
   </div>
 );
 
-const OpenClawActivityBubble = ({ frame }: { frame: number }) => {
-  const rows = [
-    ["tinyfish.search", "landing page teardowns", "10 results", colors.orange],
-    ["tinyfish.search", "force behind viral launches", "10 results", colors.orange],
-    ["tinyfish.search", "launch day checklist", "10 results", colors.orange],
-    ["tinyfish.fetch", "stripe.com", "markdown", colors.green],
-    ["tinyfish.fetch", "linear.app", "markdown", colors.green],
+const ShimmerText = ({ children, color = colors.orange, frame }: { children: React.ReactNode; color?: string; frame: number }) => {
+  const shimmerX = interpolate((frame % 48) / 48, [0, 1], [-130, 220], clamp);
+  return (
+    <span
+      style={{
+        color,
+        fontWeight: 800,
+        backgroundImage: `linear-gradient(100deg, ${color} 0%, ${color} 40%, #fff6dd 50%, ${colors.orange2} 58%, ${color} 70%, ${color} 100%)`,
+        backgroundSize: "220% 100%",
+        backgroundPosition: `${shimmerX}% 0`,
+        WebkitBackgroundClip: "text",
+        backgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      }}
+    >
+      {children}
+    </span>
+  );
+};
+
+const OpenClawToolTextBubble = ({ frame }: { frame: number }) => {
+  const lines = [
+    "Searching landing page teardowns... → 10 results",
+    "Searching force behind viral launches... → 10 results",
+    "Searching launch day checklist... → 10 results",
+    "Fetching stripe.com... ✓",
+    "Fetching linear.app... ✓",
   ];
   return (
     <div
@@ -880,68 +900,30 @@ const OpenClawActivityBubble = ({ frame }: { frame: number }) => {
         alignSelf: "flex-start",
         position: "relative",
         zIndex: 2,
-        width: 360,
+        maxWidth: 360,
         borderRadius: "16px 16px 16px 5px",
         background: "#FFFFFF",
         color: "#15201D",
-        padding: "11px 12px 12px",
+        padding: "10px 12px",
+        fontSize: 18,
+        lineHeight: 1.25,
+        whiteSpace: "pre-wrap",
         boxShadow: "0 10px 24px rgba(0,0,0,.16)",
-        fontSize: 17,
-        lineHeight: 1.2,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 9 }}>
-        <Img src={staticFile("fish.svg")} style={{ width: 20, height: 20 }} />
-        <span style={{ fontWeight: 760 }}>Searching launch tactics</span>
-        <span style={{ marginLeft: "auto", color: "#7B8781", fontSize: 13 }}>TinyFish</span>
+      <div>
+        using <ShimmerText frame={frame}>TinyFish search</ShimmerText> and{" "}
+        <ShimmerText frame={frame + 10} color={colors.green}>
+          fetch
+        </ShimmerText>
+        ...
       </div>
-      <div style={{ display: "grid", gap: 6 }}>
-        {rows.map(([tool, label, result, color], index) => {
-          const visible = fit(frame, index * 5, index * 5 + 5);
-          const done = frame > index * 5 + 8;
-          return (
-            <div
-              key={`${tool}-${label}`}
-              style={{
-                opacity: visible,
-                transform: `translateY(${(1 - visible) * 8}px)`,
-                display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
-                alignItems: "center",
-                gap: 7,
-                padding: "6px 7px",
-                borderRadius: 9,
-                background: "rgba(16,19,18,.045)",
-                border: "1px solid rgba(16,19,18,.055)",
-              }}
-            >
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: 99,
-                  background: color,
-                  boxShadow: `0 0 10px ${color}88`,
-                }}
-              />
-              <div style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
-                <span style={{ color, fontWeight: 800 }}>{tool.replace("tinyfish.", "")}</span>
-                <span style={{ color: "#5F6A64" }}> · {label}</span>
-              </div>
-              <span style={{ color: done ? "#27825D" : "#7B8781", fontWeight: 720, fontSize: 13 }}>{done ? "✓" : "..."}</span>
-              <div
-                style={{
-                  gridColumn: "2 / 4",
-                  color: "#7B8781",
-                  fontSize: 12,
-                  marginTop: -3,
-                }}
-              >
-                {result} · {tool.includes("search") ? "0.5s" : "1.1s"}
-              </div>
-            </div>
-          );
-        })}
+      <div style={{ marginTop: 8, display: "grid", gap: 3 }}>
+        {lines.map((line, index) => (
+          <div key={line} style={{ opacity: fit(frame, index * 5 + 6, index * 5 + 11), color: index >= 3 ? "#50615A" : "#15201D" }}>
+            {line}
+          </div>
+        ))}
       </div>
     </div>
   );
