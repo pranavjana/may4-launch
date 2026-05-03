@@ -425,8 +425,10 @@ const ClaudeScene = () => {
   const exit = 1;
   const typed = typeText(prompt, frame, 8, 42);
   const responseText = typeText(response, frame, 106, 54);
-  const zoom = interpolate(frame, [0, 180], [0.985, 1.055], clamp);
-  const lift = interpolate(frame, [0, 180], [16, -18], clamp);
+  const zoomIn = spring({ fps: 30, frame: frame - 40, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoomOut = spring({ fps: 30, frame: frame - 100, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoom = interpolate(zoomIn - zoomOut, [0, 1], [1, 1.12], clamp);
+  const lift = interpolate(zoomIn - zoomOut, [0, 1], [0, -28], clamp);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
       <Background />
