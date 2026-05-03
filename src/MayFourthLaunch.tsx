@@ -228,8 +228,10 @@ const ToolBlock: React.FC<{
   progress: number;
   accent?: string;
 }> = ({ name, rows, progress, accent = colors.orange }) => {
+  const frame = useCurrentFrame();
   const visible = Math.floor(progress * rows.length);
   const isSearch = name.includes("search");
+  const shimmerX = interpolate((frame % 54) / 54, [0, 1], [-140, 220], clamp);
   const command = name.includes("search")
     ? `tinyfish.search("${rows[0]?.replace('query: "', "").replace('"', "") || "..."}")`
     : `tinyfish.fetch("${rows[0]?.replace('url: "', "").replace('"', "") || "..."}")`;
@@ -239,33 +241,37 @@ const ToolBlock: React.FC<{
       style={{
         position: "relative",
         margin: "18px 0 22px",
-        padding: isSearch ? "14px 20px 16px 34px" : "0 0 0 28px",
+        paddingLeft: 28,
         color: colors.text,
         fontSize: 20,
         lineHeight: 1.42,
-        borderRadius: isSearch ? 12 : 0,
-        background: isSearch ? "linear-gradient(90deg, rgba(232,113,58,.16), rgba(232,113,58,.035) 64%, transparent)" : "transparent",
-        boxShadow: isSearch ? "inset 3px 0 0 #E8713A, 0 0 34px rgba(232,113,58,.12)" : "none",
       }}
     >
       <div
         style={{
           position: "absolute",
-          left: isSearch ? 12 : 0,
-          top: isSearch ? 23 : 8,
-          width: isSearch ? 14 : 12,
-          height: isSearch ? 14 : 12,
+          left: 0,
+          top: 8,
+          width: 12,
+          height: 12,
           borderRadius: 999,
           background: isSearch ? colors.orange : "#4CC36F",
-          boxShadow: isSearch ? "0 0 22px rgba(232,113,58,.72), 0 0 3px rgba(255,255,255,.5)" : "0 0 14px rgba(76,195,111,.35)",
+          boxShadow: isSearch ? "0 0 14px rgba(232,113,58,.42)" : "0 0 14px rgba(76,195,111,.35)",
         }}
       />
       <div style={{ whiteSpace: "pre-wrap" }}>
         <span
           style={{
-            color: isSearch ? colors.orange : colors.text,
+            display: "inline-block",
+            color: isSearch ? colors.orange : colors.green,
             fontWeight: 900,
-            textShadow: isSearch ? "0 0 18px rgba(232,113,58,.34)" : "none",
+            backgroundImage: `linear-gradient(100deg, ${isSearch ? colors.orange : colors.green} 0%, ${isSearch ? colors.orange : colors.green} 38%, #fff6dd 48%, ${colors.orange2} 56%, ${isSearch ? colors.orange : colors.green} 68%, ${isSearch ? colors.orange : colors.green} 100%)`,
+            backgroundSize: "220% 100%",
+            backgroundPosition: `${shimmerX}% 0`,
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 14px rgba(232,113,58,.18)",
           }}
         >
           {name}
