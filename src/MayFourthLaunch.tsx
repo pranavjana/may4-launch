@@ -229,6 +229,7 @@ const ToolBlock: React.FC<{
   accent?: string;
 }> = ({ name, rows, progress, accent = colors.orange }) => {
   const visible = Math.floor(progress * rows.length);
+  const isSearch = name.includes("search");
   const command = name.includes("search")
     ? `tinyfish.search("${rows[0]?.replace('query: "', "").replace('"', "") || "..."}")`
     : `tinyfish.fetch("${rows[0]?.replace('url: "', "").replace('"', "") || "..."}")`;
@@ -238,26 +239,37 @@ const ToolBlock: React.FC<{
       style={{
         position: "relative",
         margin: "18px 0 22px",
-        paddingLeft: 28,
+        padding: isSearch ? "14px 20px 16px 34px" : "0 0 0 28px",
         color: colors.text,
         fontSize: 20,
         lineHeight: 1.42,
+        borderRadius: isSearch ? 12 : 0,
+        background: isSearch ? "linear-gradient(90deg, rgba(232,113,58,.16), rgba(232,113,58,.035) 64%, transparent)" : "transparent",
+        boxShadow: isSearch ? "inset 3px 0 0 #E8713A, 0 0 34px rgba(232,113,58,.12)" : "none",
       }}
     >
       <div
         style={{
           position: "absolute",
-          left: 0,
-          top: 8,
-          width: 12,
-          height: 12,
+          left: isSearch ? 12 : 0,
+          top: isSearch ? 23 : 8,
+          width: isSearch ? 14 : 12,
+          height: isSearch ? 14 : 12,
           borderRadius: 999,
-          background: "#4CC36F",
-          boxShadow: "0 0 14px rgba(76,195,111,.35)",
+          background: isSearch ? colors.orange : "#4CC36F",
+          boxShadow: isSearch ? "0 0 22px rgba(232,113,58,.72), 0 0 3px rgba(255,255,255,.5)" : "0 0 14px rgba(76,195,111,.35)",
         }}
       />
       <div style={{ whiteSpace: "pre-wrap" }}>
-        <span style={{ color: colors.text, fontWeight: 800 }}>{name}</span>
+        <span
+          style={{
+            color: isSearch ? colors.orange : colors.text,
+            fontWeight: 900,
+            textShadow: isSearch ? "0 0 18px rgba(232,113,58,.34)" : "none",
+          }}
+        >
+          {name}
+        </span>
         <span style={{ color: colors.muted }}>(</span>
         <span style={{ color: accent }}>{command.replace(`${name}(`, "").replace(/\)$/, "")}</span>
         <span style={{ color: colors.muted }}>)</span>
