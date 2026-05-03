@@ -425,8 +425,8 @@ const ClaudeScene = () => {
   const exit = 1;
   const typed = typeText(prompt, frame, 8, 42);
   const responseText = typeText(response, frame, 106, 54);
-  const zoomIn = spring({ fps: 30, frame: frame - 40, config: { damping: 24, stiffness: 190, mass: 0.8 } });
-  const zoomOut = spring({ fps: 30, frame: frame - 104, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoomIn = spring({ fps: 30, frame: frame - 56, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoomOut = spring({ fps: 30, frame: frame - 116, config: { damping: 24, stiffness: 190, mass: 0.8 } });
   const zoomAmount = zoomIn - zoomOut;
   const zoom = interpolate(zoomAmount, [0, 1], [1, 1.44], clamp);
   const lift = interpolate(zoomAmount, [0, 1], [0, -58], clamp);
