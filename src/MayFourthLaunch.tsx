@@ -1066,9 +1066,9 @@ const MontageScene = () => {
       <div
         style={{
           position: "absolute",
-          right: 54,
+          right: 42,
           top: "50%",
-          width: 330,
+          width: 360,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -1082,7 +1082,7 @@ const MontageScene = () => {
             opacity: interpolate(labelsIn, [0.35, 1], [0, 1], clamp),
             transform: `translateY(${interpolate(labelsIn, [0.35, 1], [16, 0], clamp)}px)`,
             color: colors.text,
-            fontSize: 27,
+            fontSize: 26,
             fontWeight: 560,
             letterSpacing: 0,
             textAlign: "center",
