@@ -425,12 +425,14 @@ const ClaudeScene = () => {
   const exit = 1;
   const typed = typeText(prompt, frame, 8, 42);
   const responseText = typeText(response, frame, 106, 54);
+  const zoom = interpolate(frame, [0, 180], [0.985, 1.055], clamp);
+  const lift = interpolate(frame, [0, 180], [16, -18], clamp);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
       <Background />
       <div
         style={{
-          transform: "translateY(0px) scale(1)",
+          transform: `translateY(${lift}px) scale(${zoom})`,
           opacity: entrance,
         }}
       >
