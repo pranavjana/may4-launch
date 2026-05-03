@@ -1038,26 +1038,25 @@ const MontageScene = () => {
               backdropFilter: "blur(8px)",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: stack > 0.5 ? 7 : 10, minWidth: 0 }}>
               <span
                 style={{
-                  color: "#101312",
+                  color: colors.orange,
                   fontWeight: 900,
-                  fontSize: stack > 0.5 ? 17 : 24,
-                  padding: stack > 0.5 ? "6px 10px" : "7px 12px",
-                  borderRadius: 8,
-                  background: colors.orange,
-                  border: "1px solid rgba(255,158,110,.85)",
-                  boxShadow: "0 0 18px rgba(232,113,58,.28), inset 0 1px 0 rgba(255,255,255,.18)",
+                  fontSize: stack > 0.5 ? 14 : 18,
+                  padding: stack > 0.5 ? "4px 8px" : "5px 10px",
+                  borderRadius: 7,
+                  background: "rgba(232,113,58,.10)",
+                  border: "1px solid rgba(232,113,58,.28)",
                   whiteSpace: "nowrap",
-                  minWidth: stack > 0.5 ? 54 : 76,
+                  minWidth: stack > 0.5 ? 52 : 70,
                   textAlign: "center",
                   letterSpacing: 0,
+                  lineHeight: 1,
                 }}
               >
                 {q[0]}
               </span>
-              <span style={{ color: colors.faint }}>▸</span>
               <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{q[1]}</span>
             </div>
             <div style={{ marginTop: stack > 0.5 ? 6 : 10, color: colors.green, fontWeight: 700, fontSize: resultSize }}>{q[2]}</div>
