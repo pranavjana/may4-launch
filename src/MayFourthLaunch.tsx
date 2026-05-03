@@ -1041,14 +1041,18 @@ const MontageScene = () => {
             <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
               <span
                 style={{
-                  color: colors.orange,
+                  color: "#101312",
                   fontWeight: 900,
-                  fontSize: stack > 0.5 ? 15 : 20,
-                  padding: "4px 8px",
-                  borderRadius: 6,
-                  background: "rgba(232,113,58,.12)",
-                  border: "1px solid rgba(232,113,58,.22)",
+                  fontSize: stack > 0.5 ? 17 : 24,
+                  padding: stack > 0.5 ? "6px 10px" : "7px 12px",
+                  borderRadius: 8,
+                  background: colors.orange,
+                  border: "1px solid rgba(255,158,110,.85)",
+                  boxShadow: "0 0 18px rgba(232,113,58,.28), inset 0 1px 0 rgba(255,255,255,.18)",
                   whiteSpace: "nowrap",
+                  minWidth: stack > 0.5 ? 54 : 76,
+                  textAlign: "center",
+                  letterSpacing: 0,
                 }}
               >
                 {q[0]}
