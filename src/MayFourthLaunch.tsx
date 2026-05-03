@@ -1082,11 +1082,12 @@ const MontageScene = () => {
             opacity: interpolate(labelsIn, [0.35, 1], [0, 1], clamp),
             transform: `translateY(${interpolate(labelsIn, [0.35, 1], [16, 0], clamp)}px)`,
             color: colors.text,
-            fontSize: 32,
+            fontSize: 27,
             fontWeight: 560,
             letterSpacing: 0,
             textAlign: "center",
             width: "100%",
+            whiteSpace: "nowrap",
           }}
         >
           Use it anywhere. <span style={{ color: colors.orange }}>Any time.</span>
