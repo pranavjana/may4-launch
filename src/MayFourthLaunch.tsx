@@ -872,7 +872,8 @@ const ShimmerText = ({ children, color = colors.orange, frame }: { children: Rea
     <span
       style={{
         color,
-        fontWeight: 800,
+        fontWeight: "inherit",
+        fontFamily: "inherit",
         backgroundImage: `linear-gradient(100deg, ${color} 0%, ${color} 40%, #fff6dd 50%, ${colors.orange2} 58%, ${color} 70%, ${color} 100%)`,
         backgroundSize: "220% 100%",
         backgroundPosition: `${shimmerX}% 0`,
