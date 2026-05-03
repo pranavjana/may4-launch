@@ -429,7 +429,7 @@ const ClaudeScene = () => {
   const zoomOut = spring({ fps: 30, frame: frame - 104, config: { damping: 24, stiffness: 190, mass: 0.8 } });
   const zoomAmount = zoomIn - zoomOut;
   const zoom = interpolate(zoomAmount, [0, 1], [1, 1.44], clamp);
-  const lift = interpolate(zoomAmount, [0, 1], [0, -78], clamp);
+  const lift = interpolate(zoomAmount, [0, 1], [0, -58], clamp);
   const panX = interpolate(zoomAmount, [0, 1], [0, 190], clamp);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
