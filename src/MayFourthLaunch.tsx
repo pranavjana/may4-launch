@@ -1066,7 +1066,7 @@ const MontageScene = () => {
       <div
         style={{
           position: "absolute",
-          right: 32,
+          right: 54,
           top: "50%",
           width: 330,
           display: "flex",
@@ -1076,6 +1076,21 @@ const MontageScene = () => {
           transform: `translate(${interpolate(labelsIn, [0, 1], [30, 0], clamp)}px, -50%)`,
         }}
       >
+        <div
+          style={{
+            marginBottom: 22,
+            opacity: interpolate(labelsIn, [0.35, 1], [0, 1], clamp),
+            transform: `translateY(${interpolate(labelsIn, [0.35, 1], [16, 0], clamp)}px)`,
+            color: colors.text,
+            fontSize: 32,
+            fontWeight: 560,
+            letterSpacing: 0,
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          Use it anywhere. <span style={{ color: colors.orange }}>Any time.</span>
+        </div>
         <div
           style={{
             display: "flex",
@@ -1133,21 +1148,6 @@ const MontageScene = () => {
           <span style={{ color: colors.orange, fontFamily: "SF Mono, Menlo, monospace" }}>One API key.</span>
           <span style={{ color: colors.faint }}>Pick your way in.</span>
         </div>
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: 42,
-          bottom: 52,
-          opacity: interpolate(labelsIn, [0.35, 1], [0, 1], clamp),
-          transform: `translateY(${interpolate(labelsIn, [0.35, 1], [16, 0], clamp)}px)`,
-          color: colors.text,
-          fontSize: 34,
-          fontWeight: 560,
-          letterSpacing: 0,
-        }}
-      >
-        Use it anywhere. <span style={{ color: colors.orange }}>Any time.</span>
       </div>
     </AbsoluteFill>
   );
