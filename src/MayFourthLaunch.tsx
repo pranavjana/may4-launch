@@ -1038,7 +1038,7 @@ const MontageScene = () => {
               backdropFilter: "blur(8px)",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: stack > 0.5 ? 7 : 10, minWidth: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: stack > 0.5 ? 7 : 10, minWidth: 0, width: "100%" }}>
               <span
                 style={{
                   color: colors.orange,
@@ -1057,7 +1057,7 @@ const MontageScene = () => {
               >
                 {q[0]}
               </span>
-              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{q[1]}</span>
+              <span style={{ display: "block", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{q[1]}</span>
             </div>
             <div style={{ marginTop: stack > 0.5 ? 6 : 10, color: colors.green, fontWeight: 700, fontSize: resultSize }}>{q[2]}</div>
           </div>
