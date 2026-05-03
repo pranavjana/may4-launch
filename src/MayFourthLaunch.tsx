@@ -284,14 +284,14 @@ const ToolBlock: React.FC<{
 const HookScene = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const first = spring({ fps, frame: frame - 4, config: { damping: 16, stiffness: 120 } });
-  const free = spring({ fps, frame: frame - 24, config: { damping: 16, stiffness: 120 } });
-  const speed = spring({ fps, frame: frame - 44, config: { damping: 16, stiffness: 120 } });
-  const second = fit(frame, 64, 84);
-  const headlineBlur = interpolate(frame, [4, 22], [18, 0], clamp);
-  const freeBlur = interpolate(frame, [24, 42], [18, 0], clamp);
-  const speedBlur = interpolate(frame, [44, 62], [18, 0], clamp);
-  const secondBlur = interpolate(frame, [64, 84], [12, 0], clamp);
+  const first = spring({ fps, frame: frame - 3, config: { damping: 16, stiffness: 120 } });
+  const free = spring({ fps, frame: frame - 18, config: { damping: 16, stiffness: 120 } });
+  const speed = spring({ fps, frame: frame - 33, config: { damping: 16, stiffness: 120 } });
+  const second = fit(frame, 50, 66);
+  const headlineBlur = interpolate(frame, [3, 18], [18, 0], clamp);
+  const freeBlur = interpolate(frame, [18, 33], [18, 0], clamp);
+  const speedBlur = interpolate(frame, [33, 48], [18, 0], clamp);
+  const secondBlur = interpolate(frame, [50, 66], [12, 0], clamp);
   const exit = 1;
   return (
     <AbsoluteFill style={{ opacity: exit, fontFamily: "Host Grotesk, General Sans, sans-serif" }}>
@@ -349,7 +349,7 @@ const HookScene = () => {
                   height: 6,
                   background: colors.orange,
                   transformOrigin: "left center",
-                  transform: `scaleX(${fit(frame, 36, 41)})`,
+                  transform: `scaleX(${fit(frame, 28, 33)})`,
                   borderRadius: 99,
                 }}
               />
@@ -405,8 +405,8 @@ const ClaudeScene = () => {
     "Based on my research, here's the competitive landscape:\n\n**Pricing ranges:**\n- Exa: ~$5/1K queries after free credits\n- Tavily: ~$5-8/1K credits, 1K/mo free\n- Firecrawl: ~$1.66/1K searches, 500 free credits\n- Brave: $5/1K queries, removed free tier\n- SerpAPI: $10/1K queries...";
   const entrance = 1;
   const exit = 1;
-  const typed = typeText(prompt, frame, 18, 70);
-  const responseText = typeText(response, frame, 170, 95);
+  const typed = typeText(prompt, frame, 8, 42);
+  const responseText = typeText(response, frame, 106, 54);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
       <Background />
@@ -422,10 +422,10 @@ const ClaudeScene = () => {
               {typed}
               <span style={{ color: colors.orange }}>{frame % 20 < 10 ? "▊" : ""}</span>
             </div>
-            {frame > 74 ? (
+            {frame > 46 ? (
               <ToolBlock
                 name="tinyfish.search"
-                progress={fit(frame, 78, 118)}
+                progress={fit(frame, 48, 74)}
                 rows={[
                   'query: "web search API market landscape 2026"',
                   "",
@@ -436,10 +436,10 @@ const ClaudeScene = () => {
                 ]}
               />
             ) : null}
-            {frame > 118 ? (
+            {frame > 76 ? (
               <ToolBlock
                 name="tinyfish.fetch"
-                progress={fit(frame, 122, 162)}
+                progress={fit(frame, 78, 104)}
                 accent={colors.green}
                 rows={[
                   'url: "https://firecrawl.dev/pricing"',
@@ -486,18 +486,18 @@ const TerminalMarkdown = ({ text }: { text: string }) => (
 const HermesScene = () => {
   const frame = useCurrentFrame();
   const prompt = "find me real playbooks on building a developer community from zero -- not the fluffy stuff";
-  const typed = typeText(prompt, frame, 18, 58);
+  const typed = typeText(prompt, frame, 8, 38);
   const synthesis = typeText(
     "hermes ▸ Based on 3 sources, here are the real patterns:\n\n  1. Docs-first, not Discord-first (PostHog, Supabase)\n  2. GitHub Issues as community signal\n  3. Ship examples before launching spaces",
     frame,
-    200,
-    70
+    104,
+    42
   );
   const entrance = 1;
   const exit = 1;
   const seconds = (frame / 30).toFixed(1);
   const progressWidth = 92;
-  const activeTool = frame > 132 ? "mcp_tinyfish_fetch_content" : frame > 76 ? "mcp_tinyfish_search" : "ready";
+  const activeTool = frame > 66 ? "mcp_tinyfish_fetch_content" : frame > 28 ? "mcp_tinyfish_search" : "ready";
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
       <Background />
@@ -508,11 +508,11 @@ const HermesScene = () => {
             <Line
               accent
               text={'hermes ▸ searching "developer community building playbook real examples 2026"...'}
-              show={frame > 76}
+              show={frame > 28}
             />
-            <ResultList show={frame > 95} />
-            <Line accent text={"hermes ▸ fetching posthog.com/blog/developer-community..."} show={frame > 132} />
-            {frame > 150 ? (
+            <ResultList show={frame > 42} />
+            <Line accent text={"hermes ▸ fetching posthog.com/blog/developer-community..."} show={frame > 64} />
+            {frame > 76 ? (
               <div
                 style={{
                   marginTop: 14,
@@ -536,7 +536,7 @@ const HermesScene = () => {
             <Line
               accent
               text={'hermes ▸ searching "new hope for open source community management 2026"... ✓ 0.5s'}
-              show={frame > 190}
+              show={frame > 98}
             />
             <pre
               style={{
@@ -730,9 +730,9 @@ const TelegramScene = () => {
             />
             <Bubble
               text="I'm launching next Monday -- need landing page teardowns, competitor positioning, and launch day tactics. Go."
-              show={frame > 22}
+              show={frame > 10}
             />
-            {frame > 62 ? (
+            {frame > 34 ? (
               <Bubble
                 left
                 compact
@@ -741,7 +741,7 @@ const TelegramScene = () => {
                 }
               />
             ) : null}
-            {frame > 132 ? (
+            {frame > 82 ? (
               <Bubble
                 left
                 compact
@@ -920,14 +920,14 @@ const MontageScene = () => {
   ];
   const stack = Math.min(
     1,
-    spring({ fps: 30, frame: frame - 72, config: { damping: 32, stiffness: 135, mass: 0.9 } })
+    spring({ fps: 30, frame: frame - 48, config: { damping: 32, stiffness: 135, mass: 0.9 } })
   );
-  const labelsIn = spring({ fps: 30, frame: frame - 112, config: { damping: 24, stiffness: 190, mass: 0.75 } });
+  const labelsIn = spring({ fps: 30, frame: frame - 78, config: { damping: 24, stiffness: 190, mass: 0.75 } });
   return (
     <AbsoluteFill style={{ fontFamily: "Host Grotesk" }}>
       <Background pulse={0.02} />
       {queries.map((q, i) => {
-        const start = i * 7;
+        const start = i * 4;
         const pos = positions[i];
         const o = interpolate(frame, [start, start + 5], [0, 1], clamp);
         const pop = spring({ fps: 30, frame: frame - start, config: { damping: 18, stiffness: 260 } });
@@ -1061,8 +1061,8 @@ const MontageScene = () => {
 
 const PunchlineScene = () => {
   const frame = useCurrentFrame();
-  const setupPop = frame >= 18 ? 1 : 0;
-  const absolutesReveal = interpolate(frame, [42, 58], [0, 100], clamp);
+  const setupPop = frame >= 10 ? 1 : 0;
+  const absolutesReveal = interpolate(frame, [22, 34], [0, 100], clamp);
   return (
     <AbsoluteFill style={{ background: colors.bg, fontFamily: "Host Grotesk", alignItems: "center", justifyContent: "center" }}>
       <Grain opacity={0.07} />
@@ -1071,7 +1071,7 @@ const PunchlineScene = () => {
           color: "rgba(244,240,232,.94)",
           fontSize: 64,
           fontWeight: 430,
-          opacity: frame < 92 ? setupPop : 0,
+          opacity: frame < 52 ? setupPop : 0,
           transform: `scale(${setupPop ? 1 : 0.985})`,
         }}
       >
@@ -1079,7 +1079,7 @@ const PunchlineScene = () => {
         <span
           style={{
             color: "rgba(244,240,232,.94)",
-            ...(frame >= 42
+            ...(frame >= 22
               ? {
                   backgroundImage: `linear-gradient(90deg, #FF3B30 0%, #FF6A45 ${absolutesReveal}%, rgba(244,240,232,.94) ${absolutesReveal}%, rgba(244,240,232,.94) 100%)`,
                   WebkitBackgroundClip: "text",
@@ -1087,7 +1087,7 @@ const PunchlineScene = () => {
                   WebkitTextFillColor: "transparent",
                 }
               : {}),
-            textShadow: frame >= 42 ? `0 0 ${interpolate(frame, [42, 58], [0, 16], clamp)}px rgba(255,59,48,.45)` : "none",
+            textShadow: frame >= 22 ? `0 0 ${interpolate(frame, [22, 34], [0, 16], clamp)}px rgba(255,59,48,.45)` : "none",
           }}
         >
           absolutes.
@@ -1104,7 +1104,7 @@ const PunchlineScene = () => {
           fontSize: 64,
           lineHeight: 0.98,
           fontWeight: 520,
-          opacity: frame >= 94 ? 1 : 0,
+          opacity: frame >= 56 ? 1 : 0,
         }}
       >
         Free Search. Free Fetch.
@@ -1184,25 +1184,25 @@ const CtaScene = () => {
 
 export const MayFourthLaunch: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: colors.bg }}>
-    <Sequence from={0} durationInFrames={120}>
+    <Sequence from={0} durationInFrames={90}>
       <HookScene />
     </Sequence>
-    <Sequence from={120} durationInFrames={360}>
+    <Sequence from={90} durationInFrames={180}>
       <ClaudeScene />
     </Sequence>
-    <Sequence from={480} durationInFrames={300}>
+    <Sequence from={270} durationInFrames={150}>
       <HermesScene />
     </Sequence>
-    <Sequence from={780} durationInFrames={240}>
+    <Sequence from={420} durationInFrames={150}>
       <TelegramScene />
     </Sequence>
-    <Sequence from={1020} durationInFrames={180}>
+    <Sequence from={570} durationInFrames={120}>
       <MontageScene />
     </Sequence>
-    <Sequence from={1200} durationInFrames={180}>
+    <Sequence from={690} durationInFrames={120}>
       <PunchlineScene />
     </Sequence>
-    <Sequence from={1380} durationInFrames={90}>
+    <Sequence from={810} durationInFrames={90}>
       <CtaScene />
     </Sequence>
   </AbsoluteFill>

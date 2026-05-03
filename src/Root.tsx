@@ -6,7 +6,7 @@ export const Root: React.FC = () => {
     <Composition
       id="MayFourthLaunch"
       component={MayFourthLaunch}
-      durationInFrames={1470}
+      durationInFrames={900}
       fps={30}
       width={1080}
       height={1350}
