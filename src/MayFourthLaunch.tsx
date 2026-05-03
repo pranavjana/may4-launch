@@ -655,6 +655,11 @@ const TelegramScene = () => {
   const frame = useCurrentFrame();
   const entrance = 1;
   const exit = 1;
+  const zoomIn = spring({ fps: 30, frame: frame - 38, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoomOut = spring({ fps: 30, frame: frame - 82, config: { damping: 24, stiffness: 190, mass: 0.8 } });
+  const zoomAmount = zoomIn - zoomOut;
+  const zoom = interpolate(zoomAmount, [0, 1], [1, 1.78], clamp);
+  const lift = interpolate(zoomAmount, [0, 1], [0, -94], clamp);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: exit }}>
       <Background />
@@ -666,7 +671,7 @@ const TelegramScene = () => {
           padding: 12,
           background: "#111",
           boxShadow: "0 46px 120px rgba(0,0,0,.68), inset 0 0 0 2px rgba(255,255,255,.035)",
-          transform: "translateY(0px)",
+          transform: `translateY(${lift}px) scale(${zoom})`,
           opacity: entrance,
           fontFamily: "General Sans",
         }}
