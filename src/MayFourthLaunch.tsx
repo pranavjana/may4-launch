@@ -1134,6 +1134,21 @@ const MontageScene = () => {
           <span style={{ color: colors.faint }}>Pick your way in.</span>
         </div>
       </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 42,
+          bottom: 52,
+          opacity: interpolate(labelsIn, [0.35, 1], [0, 1], clamp),
+          transform: `translateY(${interpolate(labelsIn, [0.35, 1], [16, 0], clamp)}px)`,
+          color: colors.text,
+          fontSize: 34,
+          fontWeight: 560,
+          letterSpacing: 0,
+        }}
+      >
+        Use it anywhere. <span style={{ color: colors.orange }}>Any time.</span>
+      </div>
     </AbsoluteFill>
   );
 };
