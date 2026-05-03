@@ -444,12 +444,12 @@ const ClaudeScene = () => {
           <div style={{ padding: "28px 28px 180px", color: colors.text }}>
             <div style={{ color: colors.muted, fontSize: 23, lineHeight: 1.45, minHeight: 64 }}>
               {typed}
-              <span style={{ color: colors.orange }}>{frame % 20 < 10 ? "▊" : ""}</span>
+              <span style={{ color: colors.orange }}>{frame < 52 && frame % 20 < 10 ? "▊" : ""}</span>
             </div>
-            {frame > 46 ? (
+            {frame > 54 ? (
               <ToolBlock
                 name="tinyfish.search"
-                progress={fit(frame, 48, 74)}
+                progress={fit(frame, 56, 82)}
                 rows={[
                   'query: "web search API market landscape 2026"',
                   "",
@@ -460,10 +460,10 @@ const ClaudeScene = () => {
                 ]}
               />
             ) : null}
-            {frame > 76 ? (
+            {frame > 84 ? (
               <ToolBlock
                 name="tinyfish.fetch"
-                progress={fit(frame, 78, 104)}
+                progress={fit(frame, 86, 112)}
                 accent={colors.green}
                 rows={[
                   'url: "https://firecrawl.dev/pricing"',
